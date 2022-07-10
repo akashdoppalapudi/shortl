@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<Head>
-				<title>Shortl</title>
+				<title>Shortl - Shorten Links/URLs</title>
 				<link
 					rel="apple-touch-icon"
 					sizes="180x180"
@@ -30,6 +30,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<meta name="application-name" content="Shortl" />
 				<meta name="msapplication-TileColor" content="#603cba" />
 				<meta name="theme-color" content="#ffffff" />
+				<meta
+					name="description"
+					content="Shorten Your Long URLs or Links with your own custom slug or keyword."
+				/>
 			</Head>
 			<Component {...pageProps} />
 		</>
