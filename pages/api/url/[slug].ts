@@ -29,8 +29,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	}
 
 	res.setHeader('Content-Type', 'application/json');
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Cache-Control', 's-maxage=1000, stale-while-revalidate');
+	res.setHeader('Access-Control-Allow-Origin', '*'); // allow cross-origin requests
+	res.setHeader('Cache-Control', 's-maxage=10000, stale-while-revalidate'); // cache for 1 second
 
 	return res.json(data);
 };

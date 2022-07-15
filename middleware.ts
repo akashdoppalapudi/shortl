@@ -9,7 +9,12 @@ const middleware = async (req: NextRequest, ev: NextFetchEvent) => {
 	}
 
 	const slug = req.nextUrl.pathname.split('/').pop();
-	if (slug?.includes('.') || slug === '') {
+	if (
+		!slug ||
+		slug?.includes('.') ||
+		slug === '' ||
+		['create'].includes(slug)
+	) {
 		return;
 	}
 
