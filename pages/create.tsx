@@ -13,12 +13,17 @@ const submitHandler = async (shortLink: ShortLinkCreate) => {
 
 const Create: NextPage = () => {
 	return (
-		<>
-			<ShortLinkForm
-				shortLink={{ url: '', slug: '' }}
-				onSubmit={submitHandler}
-			/>
-		</>
+		<div className="h-screen flex justify-center bg-gray-900">
+			<div className="w-11/12 md:w-1/3 flex flex-col justify-center">
+				<h3 className="text-center text-slate-300 text-2xl tracking-widest font-bold mb-4">
+					Shorten Your Link
+				</h3>
+				<ShortLinkForm
+					shortLink={{ url: '', slug: '' }}
+					onSubmit={submitHandler}
+				/>
+			</div>
+		</div>
 	);
 };
 
