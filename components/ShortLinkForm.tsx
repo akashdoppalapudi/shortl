@@ -68,6 +68,7 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 				)}
 				<input
 					required
+					maxLength={25}
 					placeholder="Enter your custom slug... (End link will be [https://shortl.vercel.app/<slug>])"
 					type="text"
 					className="border-2 border-gray-900 focus:outline-none focus:border-gray-600 rounded-md bg-gray-900 h-8 placeholder:text-xs placeholder:text-slate-600"
