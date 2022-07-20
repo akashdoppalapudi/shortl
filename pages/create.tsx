@@ -32,7 +32,7 @@ const Create: NextPage = () => {
 						<h2 className="mt-4 mb-2 text-white text-lg font-semibold">
 							Your Short Link
 						</h2>
-						<div className="text-white flex border-2 border-gray-600 rounded-md h-10 items-center">
+						<div className="text-white flex border-2 border-gray-600 rounded-md h-min-10 p-1 items-center">
 							<h3 className="w-11/12 p-2">{`${window.location.origin}/${shortLinkSlug}`}</h3>
 							<svg
 								onClick={() =>
@@ -40,7 +40,7 @@ const Create: NextPage = () => {
 										`${window.location.origin}/${shortLinkSlug}`
 									)
 								}
-								className="hover:cursor-pointer"
+								className="hover:cursor-pointer w-1/12"
 								xmlns="http://www.w3.org/2000/svg"
 								width="20"
 								height="20"
