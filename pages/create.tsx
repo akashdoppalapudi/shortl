@@ -7,6 +7,7 @@ import { ShortLink, ShortLinkCreate } from '../models/ShortLink';
 const Create: NextPage = () => {
 	const [shortLinkSlug, setShortLinkSlug] = useState<string>('');
 	const [pageOrigin, setPageOrigin] = useState('');
+	const [isCopied, setIsCopied] = useState(false);
 
 	useEffect(() => {
 		setPageOrigin(window.location.origin);
@@ -40,12 +41,13 @@ const Create: NextPage = () => {
 						<div className="text-white flex border-2 border-gray-600 rounded-md h-min-10 p-1 items-center">
 							<h3 className="w-11/12 p-2">{`${pageOrigin}/${shortLinkSlug}`}</h3>
 							<svg
-								onClick={() =>
+								onClick={() => {
+									setIsCopied(true);
 									navigator.clipboard.writeText(
 										`${pageOrigin}/${shortLinkSlug}`
-									)
-								}
-								className="hover:cursor-pointer w-1/12"
+									);
+								}}
+								className="hover:cursor-pointer hover:bg-slate-500 w-1/12 h-10 py-2 rounded-md"
 								xmlns="http://www.w3.org/2000/svg"
 								width="20"
 								height="20"
@@ -57,6 +59,11 @@ const Create: NextPage = () => {
 							</svg>
 						</div>
 					</>
+				)}
+				{isCopied && (
+					<p className="mt-2 text-sm text-white text-right">
+						Copied to clipboard
+					</p>
 				)}
 			</div>
 		</div>
