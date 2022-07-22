@@ -72,49 +72,21 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 						Slug is already taken. Enter a unique slug
 					</span>
 				)}
-				<div className="flex">
-					<input
-						required
-						maxLength={25}
-						placeholder={`Enter your custom slug... (End link will be [${pageOrigin}/<slug>])`}
-						type="text"
-						className="pl-1 border-2 border-gray-900 focus:outline-none focus:border-gray-600 rounded-md bg-gray-900 h-8 placeholder:text-xs placeholder:text-slate-600 w-11/12"
-						value={shortLink.slug}
-						onChange={(e) => {
-							checkSlugAvailability(e.target.value);
-							setShortLink({ ...shortLink, slug: e.target.value });
-						}}
-					/>
-					<span className="w-1/12 flex items-center justify-center">
-						{!slugTaken && (
-							<svg
-								className="text-green-900"
-								xmlns="http://www.w3.org/2000/svg"
-								width="28"
-								height="28"
-								fill="currentColor"
-								viewBox="0 0 16 16"
-							>
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
-							</svg>
-						)}
-						{slugTaken && (
-							<svg
-								className="text-red-900"
-								xmlns="http://www.w3.org/2000/svg"
-								width="28"
-								height="28"
-								fill="currentColor"
-								viewBox="0 0 16 16"
-							>
-								<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-							</svg>
-						)}
-					</span>
-				</div>
+				<input
+					required
+					maxLength={25}
+					placeholder={`Enter your custom slug... (End link will be [${pageOrigin}/<slug>])`}
+					type="text"
+					className="pl-1 border-2 border-gray-900 focus:outline-none focus:border-gray-600 rounded-md bg-gray-900 h-8 placeholder:text-xs placeholder:text-slate-600"
+					value={shortLink.slug}
+					onChange={(e) => {
+						checkSlugAvailability(e.target.value);
+						setShortLink({ ...shortLink, slug: e.target.value });
+					}}
+				/>
 				<button
 					type="submit"
-					className="mx-auto mt-2 p-2 bg-gray-900 font-semibold rounded-md w-3/4 hover:opacity-95 disabled:cursor-not-allowed"
+					className="mx-auto mt-2 p-2 bg-green-600 opacity-60 text-black disabled:bg-slate-600 disabled:text-gray-900 font-semibold rounded-md w-3/4 hover:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-200"
 					disabled={
 						slugTaken ||
 						shortLink.url === '' ||
