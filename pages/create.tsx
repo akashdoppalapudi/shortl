@@ -1,11 +1,16 @@
 import { NextPage } from 'next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import ShortLinkForm from '../components/ShortLinkForm';
 import { ShortLink, ShortLinkCreate } from '../models/ShortLink';
 
 const Create: NextPage = () => {
 	const [shortLinkSlug, setShortLinkSlug] = useState<string>('');
+	const [pageOrigin, setPageOrigin] = useState('');
+
+	useEffect(() => {
+		setPageOrigin(window.location.origin);
+	}, []);
 
 	const submitHandler = async (shortLink: ShortLinkCreate) => {
 		const res = await fetch('/api/url/create', {
@@ -33,11 +38,11 @@ const Create: NextPage = () => {
 							Your Short Link
 						</h2>
 						<div className="text-white flex border-2 border-gray-600 rounded-md h-min-10 p-1 items-center">
-							<h3 className="w-11/12 p-2">{`${window.location.origin}/${shortLinkSlug}`}</h3>
+							<h3 className="w-11/12 p-2">{`${pageOrigin}/${shortLinkSlug}`}</h3>
 							<svg
 								onClick={() =>
 									navigator.clipboard.writeText(
-										`${window.location.origin}/${shortLinkSlug}`
+										`${pageOrigin}/${shortLinkSlug}`
 									)
 								}
 								className="hover:cursor-pointer w-1/12"
