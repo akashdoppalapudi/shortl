@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { ShortLink, ShortLinkCreate } from '../models/ShortLink';
 
 interface ShortLinkFormProps {
@@ -10,6 +10,11 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 	const [shortLink, setShortLink] = useState(props.shortLink);
 	const [slugTaken, setSlugTaken] = useState(false);
 	const [validUrl, setValidUrl] = useState(true);
+	const [pageOrigin, setPageOrigin] = useState('');
+
+	useEffect(() => {
+		setPageOrigin(window.location.origin);
+	}, []);
 
 	const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -54,7 +59,7 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 					required
 					placeholder="Enter yopur URL here... (check before entering)"
 					type="url"
-					className="border-2 border-gray-900 focus:outline-none focus:border-gray-600 rounded-md bg-gray-900 h-8 placeholder:text-xs placeholder:text-slate-600"
+					className="pl-1 border-2 border-gray-900 focus:outline-none focus:border-gray-600 rounded-md bg-gray-900 h-8 placeholder:text-xs placeholder:text-slate-600"
 					value={shortLink.url}
 					onChange={(e) => {
 						checkUrlValidity(e.target.value);
@@ -71,9 +76,9 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 					<input
 						required
 						maxLength={25}
-						placeholder="Enter your custom slug... (End link will be [https://shortl.vercel.app/<slug>])"
+						placeholder={`Enter your custom slug... (End link will be [${pageOrigin}/<slug>])`}
 						type="text"
-						className="border-2 border-gray-900 focus:outline-none focus:border-gray-600 rounded-md bg-gray-900 h-8 placeholder:text-xs placeholder:text-slate-600 w-11/12"
+						className="pl-1 border-2 border-gray-900 focus:outline-none focus:border-gray-600 rounded-md bg-gray-900 h-8 placeholder:text-xs placeholder:text-slate-600 w-11/12"
 						value={shortLink.slug}
 						onChange={(e) => {
 							checkSlugAvailability(e.target.value);
