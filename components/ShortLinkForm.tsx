@@ -74,7 +74,7 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 				)}
 				<input
 					required
-					maxLength={25}
+					maxLength={50}
 					placeholder={`Enter your custom slug... (End link will be [${pageOrigin}/<slug>])`}
 					type="text"
 					className="pl-1 border-2 border-gray-900 focus:outline-none focus:border-gray-600 rounded-md bg-gray-900 h-8 placeholder:text-xs placeholder:text-slate-600"
