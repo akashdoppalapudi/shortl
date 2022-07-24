@@ -11,6 +11,7 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 	const [slugTaken, setSlugTaken] = useState(false);
 	const [validUrl, setValidUrl] = useState(true);
 	const [pageOrigin, setPageOrigin] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		setPageOrigin(window.location.origin);
@@ -22,8 +23,9 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 	};
 
 	const checkSlugAvailability = async (slug: string) => {
-		setSlugTaken(true);
+		setIsLoading(true);
 		const res = await fetch(`/api/url/${slug}`);
+		setIsLoading(false);
 		if (res.status == 404) {
 			setSlugTaken(false);
 			return;
@@ -51,7 +53,7 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 				className="flex flex-col w-full gap-2 bg-black"
 				onSubmit={submitHandler}
 			>
-				<label>URL* : </label>
+				<label>URL * : </label>
 				{!validUrl && (
 					<span className="text-xs text-red-500">Enter a valid URL</span>
 				)}
@@ -66,7 +68,25 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 						setShortLink({ ...shortLink, url: e.target.value });
 					}}
 				/>
-				<label>Slug* : </label>
+				<div className="flex justify-between items-center">
+					<label>Slug * : </label>
+					{isLoading && (
+						<svg
+							className="text-slate-400 animate-spin mr-1"
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							fill="currentColor"
+							viewBox="0 0 16 16"
+						>
+							<path
+								fillRule="evenodd"
+								d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"
+							/>
+							<path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+						</svg>
+					)}
+				</div>
 				{slugTaken && (
 					<span className="text-xs text-red-500">
 						Slug is already taken. Enter a unique slug
@@ -91,7 +111,8 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 						slugTaken ||
 						shortLink.url === '' ||
 						shortLink.slug === '' ||
-						!validUrl
+						!validUrl ||
+						isLoading
 					}
 				>
 					Shorten!
