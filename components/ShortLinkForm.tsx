@@ -59,7 +59,7 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 				)}
 				<input
 					required
-					placeholder="Enter yopur URL here... (check before entering)"
+					placeholder="Enter your URL here... (check before entering)"
 					type="url"
 					className="pl-1 border-2 border-gray-900 focus:outline-none focus:border-gray-600 rounded-md bg-gray-900 h-8 placeholder:text-xs placeholder:text-slate-600"
 					value={shortLink.url}
