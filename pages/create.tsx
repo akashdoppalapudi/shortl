@@ -6,14 +6,16 @@ import { ShortLink, ShortLinkCreate } from '../models/ShortLink';
 
 const Create: NextPage = () => {
 	const [shortLinkSlug, setShortLinkSlug] = useState<string>('');
-	const [pageOrigin, setPageOrigin] = useState('');
-	const [isCopied, setIsCopied] = useState(false);
+	const [pageOrigin, setPageOrigin] = useState<string>('');
+	const [isCopied, setIsCopied] = useState<boolean>(false);
 
 	useEffect(() => {
 		setPageOrigin(window.location.origin);
 	}, []);
 
 	const submitHandler = async (shortLink: ShortLinkCreate) => {
+		setShortLinkSlug('');
+		setIsCopied(false);
 		const res = await fetch('/api/url/create', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },

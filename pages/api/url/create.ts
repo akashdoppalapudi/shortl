@@ -24,7 +24,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		return;
 	}
 
-	const newShortLink = await prisma.shortLink.create({ data: body });
+	const newShortLink = await prisma.shortLink.create({
+		data: { ...body, slug: body.slug.toLowerCase() },
+	});
 
 	return res.json(newShortLink);
 };
