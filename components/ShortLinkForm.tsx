@@ -20,6 +20,15 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 	const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		props.onSubmit(shortLink);
+		clearFields();
+	};
+
+	const clearFields = () => {
+		setShortLink({
+			...shortLink,
+			slug: '',
+			url: '',
+		});
 	};
 
 	const checkSlugAvailability = async (slug: string) => {
