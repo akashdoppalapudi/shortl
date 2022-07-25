@@ -29,6 +29,8 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 			slug: '',
 			url: '',
 		});
+		setSlugTaken(false);
+		setValidUrl(true);
 	};
 
 	const checkSlugAvailability = async (slug: string) => {
@@ -113,19 +115,28 @@ const ShortLinkForm = (props: ShortLinkFormProps) => {
 						setShortLink({ ...shortLink, slug: e.target.value });
 					}}
 				/>
-				<button
-					type="submit"
-					className="mx-auto mt-2 p-2 bg-green-600 opacity-60 text-black disabled:bg-slate-600 disabled:text-gray-900 font-semibold rounded-md w-3/4 hover:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-200"
-					disabled={
-						slugTaken ||
-						shortLink.url === '' ||
-						shortLink.slug === '' ||
-						!validUrl ||
-						isLoading
-					}
-				>
-					Shorten!
-				</button>
+				<div className="flex gap-4">
+					<button
+						type="reset"
+						onClick={clearFields}
+						className="mt-2 p-2 bg-slate-600 opacity-60 text-red-500 font-semibold rounded-md w-1/2 hover:opacity-50 transition ease-in-out duration-200"
+					>
+						Clear
+					</button>
+					<button
+						type="submit"
+						className="mt-2 p-2 bg-green-600 opacity-60 text-black disabled:bg-slate-600 disabled:text-gray-900 font-semibold rounded-md w-1/2 hover:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-200"
+						disabled={
+							slugTaken ||
+							shortLink.url === '' ||
+							shortLink.slug === '' ||
+							!validUrl ||
+							isLoading
+						}
+					>
+						Shorten!
+					</button>
+				</div>
 			</form>
 		</div>
 	);
