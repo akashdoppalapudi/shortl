@@ -6,7 +6,7 @@ import ShortLinkForm from '../components/ShortLinkForm';
 import { ShortLink, ShortLinkCreate } from '../models/ShortLink';
 
 const Create: NextPage = () => {
-	const [shortLinkSlug, setShortLinkSlug] = useState<string>('a');
+	const [shortLinkSlug, setShortLinkSlug] = useState<string>('');
 	const [pageOrigin, setPageOrigin] = useState<string>('');
 	const [isCopied, setIsCopied] = useState<boolean>(false);
 
